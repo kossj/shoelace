@@ -39,9 +39,10 @@ function doShoelace() {
 
 function drawShape(canvas, points) {
     const scale = s => s * 100;
+
     const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.stroke();
+    ctx.beginPath();
 
     points.push(points[0]);
 
@@ -54,5 +55,4 @@ function drawShape(canvas, points) {
     }
 
     ctx.stroke();
-
 }
