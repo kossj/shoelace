@@ -39,21 +39,18 @@ function doShoelace() {
 
 function drawShape(canvas, points) {
     const scale = s => s * 100;
-    const c = canvas;
-    const ctx = c.getContext("2d");
-    ctx.reset();
-
-    const height = c.height;
-    const width = c.width;
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.stroke();
 
     points.push(points[0]);
 
     const first = points[0];
-    ctx.moveTo(scale(first.x), height - scale(first.y))
+    ctx.moveTo(scale(first.x), canvas.height - scale(first.y))
 
     for (let i = 1; i < points.length; i++) {
         const p = points[i];
-        ctx.lineTo(scale(p.x), height - scale(p.y));
+        ctx.lineTo(scale(p.x), canvas.height - scale(p.y));
     }
 
     ctx.stroke();
