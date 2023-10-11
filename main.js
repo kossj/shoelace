@@ -37,12 +37,19 @@ function doShoelace() {
 
 }
 
+function sizeCanvas(canvas) {
+    const ctx = canvas.getContext("2d");
+
+    ctx.canvas.width  = window.innerWidth;
+    ctx.canvas.height = window.innerHeight / 2;
+
+}
+
 function drawShape(canvas, points) {
     const ctx = canvas.getContext("2d");
     var xscl = Number.MAX_SAFE_INTEGER, yscl = Number.MAX_SAFE_INTEGER;
 
-    ctx.canvas.width  = window.innerWidth;
-    ctx.canvas.height = window.innerHeight / 2;
+    sizeCanvas(canvas);
 
     points.forEach((point) => {
         xscl = Math.min(canvas.width / point.x, xscl);

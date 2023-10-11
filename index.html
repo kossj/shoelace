@@ -10,52 +10,20 @@
 
 
     <canvas id="draw"></canvas>
+    <script>
+        function sizeCanvas(canvas) {
+            const ctx = canvas.getContext("2d");
+        
+            ctx.canvas.width  = window.innerWidth;
+            ctx.canvas.height = window.innerHeight / 2;
+            
+            ctx.beginPath();
+            ctx.rect(0, 0, canvas.width, canvas.height);
+            ctx.stroke();
+        }
 
-    <div id="points">
-        <div>
-            <input id="x" type="number">
-            <input id="y" type="number">
-        </div>
-    </div>
-    <div id="actions">
-        <button onclick="createPoint()">Create Point</button>
-        <input type="button" id="areaButton" onclick="doShoelace()" value="Click to Get Area!"></input>
-    </div>
-</body><!DOCTYPE html>
-
-<head>
-    <title>Shoelace Formula Visualizer</title>
-</head>
-
-<body>
-    <script src="main.js"></script>
-    <link rel="stylesheet" href="style.css">
-
-
-    <canvas id="draw"></canvas>
-
-    <div id="points">
-        <div>
-            <input id="x" type="number">
-            <input id="y" type="number">
-        </div>
-    </div>
-    <div id="actions">
-        <button onclick="createPoint()">Create Point</button>
-        <input type="button" id="areaButton" onclick="doShoelace()" value="Click to Get Area!"></input>
-    </div>
-</body><!DOCTYPE html>
-
-<head>
-    <title>Shoelace Formula Visualizer</title>
-</head>
-
-<body>
-    <script src="main.js"></script>
-    <link rel="stylesheet" href="style.css">
-
-
-    <canvas id="draw"></canvas>
+        sizeCanvas(document.getElementById("draw"));
+    </script>
 
     <div id="points">
         <div>
