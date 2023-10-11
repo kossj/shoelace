@@ -31,7 +31,31 @@ function doShoelace() {
     }
 
     r = shoelace(points);
+    drawShape(document.getElementById("draw"), points);
 
     document.getElementById("areaButton").value = r;
+
+}
+
+function drawShape(canvas, points) {
+    const scale = s => s * 100;
+    var c = canvas;
+    var ctx = c.getContext("2d");
+    ctx.reset();
+
+    var height = c.height;
+    var width = c.width;
+
+    points.push(points[0]);
+
+    first = points[0];
+    ctx.moveTo(scale(first.x), height - scale(first.y))
+
+    for (i = 1; i < points.length; i++) {
+        p = points[i];
+        ctx.lineTo(scale(p.x), height - scale(p.y));
+    }
+
+    ctx.stroke();
 
 }
