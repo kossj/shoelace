@@ -1,5 +1,5 @@
 function createPoint() {
-    point = document.createElement("div");
+    var point = document.createElement("div");
     point.innerHTML = '<input id="x" type="number"><input id="y" type="number">';
     document.getElementById("points").append(point);
 }
@@ -14,7 +14,7 @@ function shoelace(points) {
         yxpairs += (points[i].y * points[i + 1].x)
     }
 
-    area = 0.5 * (xypairs - yxpairs)
+    const area = 0.5 * (xypairs - yxpairs)
 
     return area
 }
@@ -23,14 +23,14 @@ function doShoelace() {
     children = document.getElementById("points").children;
     points = [];
 
-    for (i = 0; i < children.length; i++) {
-        var x = parseFloat(children[i].querySelector("#x").value);
-        var y = parseFloat(children[i].querySelector("#y").value);
+    for (let i = 0; i < children.length; i++) {
+        const x = parseFloat(children[i].querySelector("#x").value);
+        const y = parseFloat(children[i].querySelector("#y").value);
 
         points.push({ x: x, y: y });
     }
 
-    r = shoelace(points);
+    const r = shoelace(points);
     drawShape(document.getElementById("draw"), points);
 
     document.getElementById("areaButton").value = r;
@@ -39,20 +39,20 @@ function doShoelace() {
 
 function drawShape(canvas, points) {
     const scale = s => s * 100;
-    var c = canvas;
-    var ctx = c.getContext("2d");
+    const c = canvas;
+    const ctx = c.getContext("2d");
     ctx.reset();
 
-    var height = c.height;
-    var width = c.width;
+    const height = c.height;
+    const width = c.width;
 
     points.push(points[0]);
 
-    first = points[0];
+    const first = points[0];
     ctx.moveTo(scale(first.x), height - scale(first.y))
 
-    for (i = 1; i < points.length; i++) {
-        p = points[i];
+    for (let i = 1; i < points.length; i++) {
+        const p = points[i];
         ctx.lineTo(scale(p.x), height - scale(p.y));
     }
 
