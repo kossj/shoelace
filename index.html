@@ -1,22 +1,59 @@
 <!DOCTYPE html>
+
 <head>
     <title>Shoelace Formula Visualizer</title>
 </head>
+
 <body>
 
     <script>
         function createPoint() {
-            points = document.getElementById("points");
-            point = document.createElement("div").innerHTML('<div point><input id="x" type="number"><input id="y" type="number"></div>')
-            points.appendChild(point);
+            point = document.createElement("div");
+            point.innerHTML = '<input id="x" type="number"><input id="y" type="number">';
+            document.getElementById("points").append(point);
+        }
+
+        function shoelace(points) {
+            points.push(points[0])
+
+            var xypairs = 0, yxpairs = 0;
+
+            for (i = 0; i < points.length - 1; i++) {
+                xypairs += (points[i].x * points[i + 1].y)
+                yxpairs += (points[i].y * points[i + 1].x)
+            }
+
+            area = 0.5 * (xypairs - yxpairs)
+
+            return area
+        }
+
+        function doShoelace() {
+            children = document.getElementById("points").children;
+            points = [];
+
+            for (i = 0; i < children.length; i++) {
+                var x = parseFloat(children[i].querySelector("#x").value);
+                var y = parseFloat(children[i].querySelector("#y").value);
+
+                points.push({ x: x, y: y });
+            }
+
+            r = shoelace(points);
+
+            document.getElementById("areaButton").value = r;
+
         }
     </script>
 
-<div points>
-    <div point>
-        <input id="x" type="number">
-        <input id="y" type="number">
+    <div id="points">
+        <div>
+            <input id="x" type="number">
+            <input id="y" type="number">
+        </div>
     </div>
-    <button onclick="createPoint()">Create Point</button>
-</div>
+    <div id="actions">
+        <button onclick="createPoint()">Create Point</button>
+        <input type="button" id="areaButton" onclick="doShoelace()" value="Click to Get Area!"></input>
+    </div>
 </body>
